@@ -1,0 +1,25 @@
+{
+  "name": "lab02-static-server",
+  "version": "0.0.0",
+  "description": "Servidor Web estatico en node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quiques/lab02-static-server.git"
+  },
+  "keywords": [
+    "node",
+    "static-server",
+    "web"
+  ],
+  "author": "luis.921451@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quiques/lab02-static-server/issues"
+  },
+  "homepage": "https://github.com/quiques/lab02-static-server#readme"
+}
