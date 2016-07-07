@@ -1,5 +1,6 @@
 //http
 var http = require("http");
+var fs = require('fs');
 //obteniendo informacion del entorno de ejecucion con respecto al IP
 //y al puerto que debeomos uzar en nuestro server.
 var PORT = process.env.PORT || 3000;
@@ -14,13 +15,25 @@ var server = http.createServer(function (req,res) {
     //Armar la respuesta en el protocolo http
     //Armar un encabezado http
     res.writeHead(200,{
-        "Content-Type": "text/plain",
+        "Content-Type": "text/html",
         "Server": "ITGAM@4.4.7"
     });
+
+    //lectura del archivo a servir
+    fs.readFile('./static/index.html','utf8',function (err, content) {
+        if(err) {
+            //res.write("<h1>Error de lectura</h1>");
+            res.end("<h1>Error de lectura</h1>");
+        }else{
+            //re.write(content);
+            res.end(content);
+          }
+    });
+
     //Enviamor la respuesta
-    res.write("Hola Luis Enrique Sanchez");
+    //res.write("<h1>Hola Luis Enrique Sanchez</<1>");
     //Cerra la conexion
-    res.end();
+    //res.end();
 });
 //Poner a trabajar al server
 //usar un puerto y la direccion ip o locall host
