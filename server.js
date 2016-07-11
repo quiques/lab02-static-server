@@ -2,6 +2,7 @@
 var http = require("http");
 var fs = require('fs');
 var config = require("./config/config.js");
+var staticServer = require('./internals/static-server.js')
 //obteniendo informacion del entorno de ejecucion con respecto al IP
 //y al puerto que debeomos uzar en nuestro server.
 //var PORT = process.env.PORT || 3000;
@@ -16,24 +17,34 @@ if (IP == '127.0.0.1')
 //crear un servidor basico
 //cargar un programa a nuestro servidor
 var server = http.createServer(function (req,res) {
+    //obtener la url del archivo
+    var url = req.url;
+    //Sirvo la url con mi servidor statico
+    staticServer.serve(url,res);
+    
+
+
+    //Esta parte ya no se va ocupar porque ya no nececitamos la respuesta harcodeada
+    //Porque esta parte hacia algo muy General
     //Armar la respuesta en el protocolo http
     //Armar un encabezado http
-    res.writeHead(200,{
-        "Content-Type": "text/html",
-        "Server": "ITGAM@4.4.7"
-    });
+    //res.writeHead(200,{
+    //    "Content-Type": "text/html",
+    //    "Server": "ITGAM@4.4.7"
+   // });
 
     //lectura del archivo a servir
-    fs.readFile('./static/index.html',
-    'utf8',function (err, content) {
-        if(err) {
+   // fs.readFile('./static/index.html',
+    //'utf8',function (err, content) {
+       // if(err) {
             //res.write("<h1>Error de lectura</h1>");
-            res.end("<h1>Error de lectura</h1>");
-        }else{
+        //    res.end("<h1>Error de lectura</h1>");
+      //  }else{
             //re.write(content);
-            res.end(content);
-          }
-    });
+        //    res.end(content);
+       //   }
+
+    //});
 
     //Enviamor la respuesta
     //res.write("<h1>Hola Luis Enrique Sanchez</<1>");
