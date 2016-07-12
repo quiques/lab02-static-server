@@ -23,6 +23,7 @@ exports.serve = function (url, res){
                         'Content-Type' : 'text/html',
                         'Server' : 'pilgrimsHawk@2.1.2'
                     });
+                  
                     res.end("<h1>Error 500: Recurso dañado</h1>");
                 }else {
                     //configuramos la respuesta

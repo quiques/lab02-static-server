@@ -2,6 +2,7 @@
 var http = require("http");
 var fs = require('fs');
 var config = require("./config/config.js");
+var colors = require("colors");
 var staticServer = require('./internals/static-server.js')
 //obteniendo informacion del entorno de ejecucion con respecto al IP
 //y al puerto que debeomos uzar en nuestro server.
@@ -19,6 +20,13 @@ if (IP == '127.0.0.1')
 var server = http.createServer(function (req,res) {
     //obtener la url del archivo
     var url = req.url;
+    
+    if(url == "/")
+    {
+        //sirve el index
+        url = "/index.html";
+    }
+    console.log(`URL Solicitada: ${url}...`.yellow );
     //Sirvo la url con mi servidor statico
     staticServer.serve(url,res);
     
