@@ -3,7 +3,9 @@ var http = require("http");
 var fs = require('fs');
 var config = require("./config/config.js");
 var colors = require("colors");
-var staticServer = require('./internals/static-server.js')
+var staticServer = require('./internals/static-server');
+var handlers = require('./internals/handlers');
+
 //obteniendo informacion del entorno de ejecucion con respecto al IP
 //y al puerto que debeomos uzar en nuestro server.
 //var PORT = process.env.PORT || 3000;
@@ -26,10 +28,21 @@ var server = http.createServer(function (req,res) {
         //sirve el index
         url = "/index.html";
     }
+    // Verificando que la petición del cliente sea una ruta virtual
+    if(typeof(handlers[url]) === 'function')
+    {
+    // Si entro aqui, significa que exixte un manejador para la url
+    //que se esta solicitando por lo tanto la ejecuto
+    handlers[url](req, res);   
+    }
+    else{
     console.log(`URL Solicitada: ${url}...`.yellow );
-    //Sirvo la url con mi servidor statico
+    // Sirvo la url con mi servidor statico
     staticServer.serve(url,res);
     
+    }
+
+
 
 
     //Esta parte ya no se va ocupar porque ya no nececitamos la respuesta harcodeada
