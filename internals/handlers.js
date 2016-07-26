@@ -1,44 +1,37 @@
 // Manejadores de rutas virtuales
 var fortune = require("./fortune");
-var FdN = new Date(1992,9,14,12,00)
-//Manejadores de rutas virtuales 
+
+var fechaDeNacimiento = new Date(1992,9,14,12,15);
 module.exports = {
-    "/edad/luis-sanchez": function (req, res) {
+    "/edad/luis-sanchez" : function(req, res){
         res.writeHead(200,{
             "Content-Type" : "application/json"
         });
         // Calculo la edad
         var hoy = new Date();
-        var age = Math.ceil((hoy - FdN)/(1000*3600*24*365));    
-        //Armando el json
+        var age = 
+        Math.ceil((hoy - fechaDeNacimiento)/(1000*3600*24*365))
+        // Armando el json
         var objetoRespuesta = {
-            "edad":age
+            "edad" : age
         };
-        var jsonResponce = JSON.stringify(objetoRespuesta);
-        //Envio la respuesta al cliente 
-        res.end(jsonResponce);
+        var jsonResponse = 
+        JSON.stringify(objetoRespuesta);
+        // Envio la respuesta al cliente
+        res.end(jsonResponse); 
     },
-    "/getfortune": function (req, res){
-        Console.log("> Se solicita fortuna.....");
+    "/getfortune": function(req, res){
+        console.log("> Se solicita fortuna...");
         // // Se obtiene el mensaje de la suerte
-        // var fortunePaper = {
-        //     "mensaje" : 
-        //     "La honestidad es un regalo caro, no lo esperes de gente baratisima"
-        // };
-        // // Se configura el encabezado de respuesta HTTP
-        // res.writeHead(200,{
-        //     "Content-Type" : "application/json"
-        // });
-        // // Parseando a string el objeto Respuesta
-        // // Al estar en 
-        // var jsonResponce = JSON.stringify(fortunePaper);
         fortune.getFortune(function(fortunePaper){
-          //  Se configura el encabezado de respuesta HTTP
+            // Se configura el encabezado de respuesta
+            // HTTP
             res.writeHead(200,{
-            "Content-Type" : "application/json"
-           });
+                "Content-Type" : "application/json"
+            });
+            console.log("Contestando: " + fortunePaper);
+            // Respondemos el Objeto
+            res.end(fortunePaper);
         });
-        //Respondemos el Objeto
-        res.end(fortunePaper);
     }
 };

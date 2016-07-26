@@ -1,14 +1,17 @@
 function getFortuneFromServer(){
-    // Realizando la solicitud jquery en ajax
-    $.get("/getfortune", function(data, status){
-        console.log("> " + typeof(data));
-        console.log("> Estatus de respuesta:  " + status);
-        alert(data.mensaje);
+    // Realizando la solicitud get en AJAX
+    $.get("/getfortune","", function(data, status){
+        console.log("> " +  typeof(data));
+        console.log("> Estatus de respuesta: " + status);
         swal({
-            title: "!Tu Fortuna¡",
-             text: data.mensaje,
-             imageUrl: 'img/suerte.jpg'
-            });
-    });
-    //alert("¡Esta es tu fortuna!");
+            title: "!Esta es tu fortuna¡",
+            text: data.message,
+            imageUrl: "img/like.jpg"
+        });
+    },"json");
 }
+
+$(document).ready(function () {
+    $('.parallax').parallax();
+    console.log("> Paralax Initialized...");
+});

@@ -1,50 +1,46 @@
-//Cargar los modulos necesarios 
-//para crear mi servidor estatico
+//creando las librerias externas para cargar los modulos nesesarios para crear mi servidor estatico
 var fs = require('fs'),
     config = require('../config/config.js'),
     mime = require('mime');
-
-//Exportar la función de Servidor estatico
-//la funcion nececita dos argumentos son url y res
-exports.serve = function (url, res){
-    //Acompletar el static - path
+//exportar la funcion de servidor estatico 
+//serve hara la funcion de servir
+exports.serve = function name(url, res) {
+    //acompletar al static 
     var filePath = config.STATIC_PATH + url;
-    //verificando si esxixte o no el 
-    //archivo dentro del servidor
+    //   verificando si existe o no el archivo dentro del servidor
+    // "exist" me permite saber si existe la rurta o Node
     fs.exists(filePath, function (exists) {
         if(exists){
             //sirvo el archivo
-            fs.readFile(filePath,function (err, content){
-                //Revisar si hay un error
-                if(err){
-                    console.log(`>Hubo Error en la lectura del archivo: ${filePath}`);
-                    // Enviar error 500: que significa que es un error interno
+            fs.readFile(filePath, function (err, content) {
+                if (err) {
+                    console.log(`> hubo error en la lectura del archivo: ${filePath}`);
+                    // enviar error 500 por error interno
                     res.writeHead(500,{
-                        'Content-Type' : 'text/html',
-                        'Server' : 'pilgrimsHawk@2.1.2'
+                        'ContentType' : 'text/html',
+                        'Server' : 'Hawks-server@2.1.2*2'
                     });
-                  
-                    res.end("<h1>Error 500: Recurso dañado</h1>");
-                }else {
-                    //configuramos la respuesta
+                    //envia al usuario una respuesta del tipo de error 500
+                    res.end("<h1> Error 500: Recurso dañado </h1>");
+                } else {
+                    //configuramos la respuesta con "mime.list"
                     var contentType = mime.lookup(filePath);
-                    //Armamos respuesta
+                    //armamos respuesta, los tipos de respuesta son contenttype y el server
                     res.writeHead(200,{
                         'Content-Type' : contentType,
-                        'Server' : 'PilgrimHawks-Server@2.1.2'
+                        'Server' : 'Hawks-server@2.1.2*2'
                     });
-                    //Enviar el archivo
+                    //enviar el archivo con el contenido
                     res.end(content);
                 }
             });
         }else{
-            //Mando un codigo 404
+            //mando un codigo 404
             res.writeHead(404,{
-                'Content-Type' : 'text/html',
-                'Server' : 'PilgrimHawks-Server@2.1.2'
-            })
-            res.end("<h1>Error 404: Recurso no Encontrado</h1>");
+                'ContentType' : 'text/html',
+                'Server' : 'Hawks-server@2.1.2*2'
+            });
+            res.end("<h1> Error 404: Recurso no encontrado </h1>")
         }
-
     });
 };

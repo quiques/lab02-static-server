@@ -2,23 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./vendor/sweetalert/dist/sweetalert.css">
-    <title>Document</title>
+    <!-- Import GOOGLE ICON FONT FAMILY -->
+    <link 
+    rel="stylesheet" 
+    href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Import Materialize -->
+    <link rel="stylesheet" 
+    href="./vendor/materialize/bin/materialize.css">
+    <link 
+    rel="stylesheet" 
+    href="./vendor/sweetalert/dist/sweetalert.css">   
+    <title>Conoce tu suerte</title>
 </head>
 <body>
-    <h1>Fortune Cookie</h1>
-    <div id="title">
-    <p>! si tu fortuna quieres saber, la galleta de la suerte debes romper</p>
+      <nav>
+    <div class="nav-red">
+      <div class="col b16">
+          <i class="material-icons center">visibility off</i>
+        <a href="#!" class="">Tu</a>
+        <a href="#!" class="">Fortuna </a>
+        <a href="#!" class="">Es......</a>
+        
+      </div>
     </div>
-    <div id="cookie"><button onclick="getFortuneFromServer()">ROMPE LA GALLETA</button></div>
-     <h2>Under Construction</h2>
-    <div id="status">
-        <img src="./img/construction.jpeg"
-        alt="En Construccion">
+  </nav>
+     <div class="section red">
+        <div class="row cener container">
+            <h2 class="header center">Encomiendate a tu amuleto favorito </h2>
+            <div class="center">
+                <a onclick="getFortuneFromServer()"
+                    <a class="waves-red waves-red btn-large"><i class="material-icons left">fingerprint</i>Si estas seguro de que quiqeres saber tu suerte da click aqui</a>
+                </a>
+            </div>
         </div>
-    <!-- Seccion de Scripts -->
-    <script src="./vendor/jquery/dist/jquery.js"></script>
-     <script src="./vendor/sweetalert/dist/sweetalert.min.js"></script>
-     <script src="./js/site.js"></script>
+        
+        <img class="materialboxed" data-caption="El ojo de venado" width="250" src="./img/amu.jpg">
+        <img class="materialboxed" data-caption="Elefante fantastico" width="250" src="./img/ele.jpg">
+        <img class="materialboxed" data-caption="Buo el suertudo" width="250" src="./img/buo.jpg">
+        <img class="materialboxed" data-caption="Galleta de la fortuna" width="250" src="./img/ga.jpg">
+        <img class="materialboxed" data-caption="Gatos cachanatos" width="250" src="./img/cat.jpg">
+        
+    </div>
+ 
+    <script src="./vendor/jquery/dist/jquery.min.js"></script>
+    <script src="./vendor/materialize/bin/materialize.js"></script>
+    <script src="./vendor/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/site.js"></script>
 </body>
 </html>
